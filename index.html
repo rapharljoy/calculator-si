@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Calculator</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial;
+}
+.calculator{
+    background:#020617;
+    padding:15px;
+    border-radius:15px;
+    width:100%;
+    max-width:360px;
+}
+input{
+    width:100%;
+    padding:15px;
+    font-size:22px;
+    border:none;
+    border-radius:8px;
+    margin-bottom:10px;
+    text-align:right;
+}
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+button{
+    padding:15px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+}
+button.operator{background:#2563eb}
+button.equal{
+    background:#22c55e;
+    grid-column:span 2;
+}
+button.clear{
+    background:#ef4444;
+    grid-column:span 2;
+}
+.result{
+    color:#22c55e;
+    text-align:right;
+    font-size:20px;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<input type="text" id="display" placeholder="0" readonly>
+
+<div class="buttons">
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button onclick="add('/')">÷</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button onclick="add('*')">×</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button onclick="add('-')">−</button>
+
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button onclick="add('+')">+</button>
+<button onclick="add('Math.sqrt(')">√</button>
+
+<button onclick="add('Math.sin(')">sin</button>
+<button onclick="add('Math.cos(')">cos</button>
+<button onclick="add('Math.tan(')">tan</button>
+<button onclick="add('Math.PI')">π</button>
+
+<button class="clear" onclick="clearInput()">AC</button>
+<button class="equal" onclick="calculate()">=</button>
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+const display = document.getElementById("display");
+const resultBox = document.getElementById("result");
+
+function add(val){
+    display.value += val;
+}
+
+function clearInput(){
+    display.value = "";
+    resultBox.innerText = "";
+}
+
+function calculate(){
+    try{
+        let res = eval(display.value);
+        resultBox.innerText = "Result: " + res;
+        display.value = res;
+    }catch{
+        resultBox.innerText = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
